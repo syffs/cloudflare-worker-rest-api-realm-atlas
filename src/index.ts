@@ -5,6 +5,7 @@ import * as utils from './utils';
 interface Bindings {
     // MongoDB Realm Application ID
     REALM_APPID: string;
+    REALM_APIKEY: string;
 }
 
 // Define type alias; available via `realm-web`
@@ -38,7 +39,7 @@ const worker: ExportedHandler<Bindings> = {
         if (!token) return utils.toError('Missing "authorization" header; try to add the header "authorization: REALM_API_KEY".', 401);
 
         try {
-            const credentials = Realm.Credentials.apiKey(token);
+            const credentials = Realm.Credentials.apiKey(env.REALM_APIKEY);
             // Attempt to authenticate
             var user = await App.logIn(credentials);
             var client = user.mongoClient('mongodb-atlas');

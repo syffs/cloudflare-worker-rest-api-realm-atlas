@@ -4,6 +4,9 @@ type = "javascript"
 account_id = "CLOUDFLARE_ACCOUNT_ID"
 workers_dev = true # or zone_id = "<ZONE ID>" if you have one
 
+[miniflare]
+env_path = ".env.miniflare"
+
 [build]
 command = "npm run build"
 
